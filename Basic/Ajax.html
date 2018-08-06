@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Angular JS Includes</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+
+</head>
+<body>
+<h2>AngularJS Sample Application</h2>
+<div ng-app="" ng-controller="UserController">
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>User Name</th>
+            <th>Email</th>
+        </tr>
+
+        <tr ng-repeat="user in users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.address.street }}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function UserController($scope, $http) {
+        var url = "https://jsonplaceholder.typicode.com/users";
+
+        $http.get(url).then(function (response) {
+            $scope.users = response.data;
+        });
+    }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+</body>
+</html>
